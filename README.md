@@ -1,31 +1,35 @@
-🌱 AgriPredict —  # Crop Price Prediction System
+🌱 AgriPredict — Crop Price Prediction System
 
-This project predicts vegetable prices (Onion, Tomato, Potato) across 5 Indian cities — Chennai, Mumbai, Delhi, Bangalore, and Hyderabad — using Machine Learning and real-time weather data from OpenWeatherMap.
+This project predicts vegetable prices (Onion, Tomato, Potato) across 5 Indian cities using both Machine Learning and Deep Learning with real-time weather data.
 
-It has 3 pages:
+Pages:
+  · Dashboard → Select city & vegetable → fetches live weather → 7-day price forecast
+  · Market    → Dynamic prices for all city-vegetable combinations
+  · Analytics → 4 charts: price trend, scatter, demand bar, volatility
 
-	∙	Dashboard → Select city & vegetable → fetches live weather → gives 7-day price forecast with a chart
-	
-	∙	Market → Shows dynamic prices for all city-vegetable combinations based on live weather
-	
-	∙	Analytics → 4 charts: price trend, price vs rainfall scatter, price vs demand bar, and price volatility
+Models:
+  · Random Forest Regressor (sklearn) — fast, no extra dependencies
+  · LSTM Deep Learning (TensorFlow/Keras) — sequence model, requires tensorflow
 
-The ML model is a Random Forest Regressor trained on 1,500 records with features like temperature, rainfall, demand, and lag prices.
+To run:
 
-To run this file:
+  # 1. Install core libraries
+  pip3 install flask scikit-learn pandas numpy requests
 
-1. Install libraries
-   
-pip3 install flask scikit-learn pandas numpy requests
+  # 2. Install TensorFlow for LSTM (optional but recommended)
+  pip3 install tensorflow
 
-2. Add your OpenWeatherMap API key in app.py line 16
-   
-3. Retrain the model
-python3 generate_data.py
-python3 model.py
+  # 3. Add your OpenWeatherMap API key in app.py (line with WEATHER_API_KEY)
 
-4. Start the app
-python3 app.py
+  # 4. Generate data & train both models
+  python3 generate_data.py
+  python3 model.py
 
-5. Open in browser
-http://127.0.0.1:5000
+  # 5. Start the app
+  python3 app.py
+
+  # 6. Open in browser
+  http://127.0.0.1:5000
+
+If TensorFlow is not installed, the app runs fine with Random Forest only.
+The LSTM button will appear disabled until tensorflow is available.
